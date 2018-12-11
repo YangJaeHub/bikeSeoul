@@ -6,7 +6,7 @@ Created on Tue Nov 20 16:48:57 2018
 """
 
 import csv
-from haversine import haversine 
+from haversine import haversine
 import numpy as np
 
 
@@ -116,13 +116,13 @@ def make_csv(bnumd, brackd, blatd, blond, elvd):
 
 
 if __name__ == '__main__':
-#    lon1, lat1, elv1 = read_csv1('../../ASTGTM2_N37E126/ASTGTM2_N37E126_dem.xyz')
-#    lon2, lat2, elv2 = read_csv2('../../ASTGTM2_N37E127/ASTGTM2_N37E127_dem.xyz')
+    lon1, lat1, elv1 = read_csv1('../../ASTGTM2_N37E126/ASTGTM2_N37E126_dem.xyz')
+    lon2, lat2, elv2 = read_csv2('../../ASTGTM2_N37E127/ASTGTM2_N37E127_dem.xyz')
 
-#    bnum, brack, blat, blon = read_bike('../../따릉이대여소목록.csv')
-#    tlon, tlat, telv = concat_lonlat(lon1, lat1, elv1, lon2, lat2, elv2)
+    bnum, brack, blat, blon = read_bike('../../따릉이대여소목록.csv')
+    tlon, tlat, telv = concat_lonlat(lon1, lat1, elv1, lon2, lat2, elv2)
     bnumd, brackd, blatd, blond, elvd = deviation_elv(tlon, tlat, telv, bnum, brack, blon, blat)
-#    make_csv(bnumd, brackd, blatd, blond, elvd)
+    make_csv(bnumd, brackd, blatd, blond, elvd)
 
         
 

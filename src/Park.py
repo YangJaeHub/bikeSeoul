@@ -32,16 +32,23 @@ def get_min_distance(list, coor):
 
 list = get_park_info()
 
-f = open('data/re_bike_info.csv', 'r', encoding='utf-8')
+f = open('data/bike_river.csv', 'r', encoding='utf-8')
 rdr = csv.reader(f)
-nf = open('data/bike_park_info.csv', 'w', encoding='utf-8', newline='')
+nf = open('data/bike_river_park.csv', 'w', encoding='utf-8', newline='')
 wr = csv.writer(nf)
-wr.writerow(["대여소 번호", "거치대", "위도", "경도", "한강 거리", "가까운 공원 거리", "공원 넓이 m^"])
 
 is_first = True
 for line in rdr:
     if is_first:
+        line.append("가까운 공원 거리")
+        line.append("공원 넓이 m^")
+        wr.writerow(line)
         is_first = False
         continue
-    min_distance = get_min_distance(list, (float(line[3]), float(line[2])))
-    wr.writerow([line[0], line[1], line[2], line[3], line[4], min_distance[0], min_distance[1]])
+    min_distance = get_min_distance(list, (float(line[7]), float(line[6])))
+    line.append(min_distance[0])
+    line.append(min_distance[1])
+    wr.writerow(line)
+
+f.close()
+nf.close()

@@ -1,3 +1,5 @@
+#-*- coding: utf-8 -*-
+
 from src.util.Geography import calculate_coor_list, coordinate_to_point, point_to_coordinate, get_distance_from_coordinate
 from src.util.Geography import get_coefficient, get_nearest_point_from_graph, get_coefficient_two_dimension, get_nearest_point_from_graph_two_dimension
 import csv
@@ -67,18 +69,20 @@ def get_distance_from_han_river(tuple):
 # print(result)
 
 
-f = open('data/bike_info.csv', 'r', encoding='utf-8')
+f = open('data/bike_1204.csv', 'r', encoding='mac_roman')
 rdr = csv.reader(f)
-nf = open('data/re_bike_info.csv', 'w', encoding='utf-8', newline='')
+nf = open('data/bike_river.csv', 'w', encoding='utf-8', newline='')
 wr = csv.writer(nf)
-wr.writerow(["대여소 번호", "거치대", "위도", "경도", "한강 거리"])
 
 is_first = True
 for line in rdr:
     if is_first:
+        line.append("한강 거리")
+        wr.writerow(line)
         is_first = False
         continue
-    wr.writerow([line[1], line[4], line[5], line[6], get_distance_from_han_river((float(line[5]), float(line[6])))])
+    line.append(get_distance_from_han_river((float(line[6]), float(line[7]))))
+    wr.writerow(line)
 
 f.close()
 nf.close()
